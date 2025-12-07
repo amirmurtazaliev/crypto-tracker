@@ -21,3 +21,11 @@ class ConfirmCode(Base):
     code: Mapped[str]
     created_at: Mapped[datetime.datetime] = mapped_column(default = datetime.datetime.now())
     
+class FavoutiteCrypto(Base):
+    __tablename__ = "favcrypto"
+    
+    id: Mapped[int] = mapped_column(primary_key = True)
+    cmc_id: Mapped[int] = mapped_column(unique = True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete = "CASCADE"))
+    crypto_name: Mapped[str] = mapped_column(unique = True)
+    
